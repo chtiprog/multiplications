@@ -110,8 +110,7 @@ public class MainMultiplication {
 			}
 		}
 		
-		
-		
+			
 		// AFFICHAGE DU RESULTAT :
 		String reponse = "" ;
 		for(int elem : result){
