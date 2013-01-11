@@ -8,8 +8,8 @@ public class MainMultiplication {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		int[] chiffreUn = {5,7,4} ; // 275 Le premier à multiplier   475 * 32
-		int[] chiffreDeux = {2,3} ; // 332 Le chiffre qui va multiplier le premier
+		int[] chiffreUn = {9,9} ; // 275 Le premier à multiplier   475 * 32, 97 * 32
+		int[] chiffreDeux = {9,9,9} ; // 332 Le chiffre qui va multiplier le premier
 		int retenue = 0 ;
 		int multiplication ;
 		int BASE = 10 ;
@@ -21,9 +21,13 @@ public class MainMultiplication {
 		}
 		//--------------------------------------------------------------------
 		int addition ; // Le résultat des additions intermédiaires
-		int index ; // pour se promener dans result
+		int index = 0; // pour se promener dans result
 		
 		for(int i = 0 ; i < chiffreDeux.length ; ++i){
+			if(retenue != 0) {
+				result.set(index, retenue) ;
+				retenue = 0 ;
+			}
 			index = i ;
 			for(int j = 0 ; j < chiffreUn.length ; ++j){
 				
@@ -51,16 +55,25 @@ public class MainMultiplication {
 						addition %= BASE ;
 					}
 					result.set(index, addition ) ;
-					while(multiplication % BASE != 0 && multiplication > 1){
+					while(multiplication % BASE != 0 && multiplication > 1 ){
 						retenue += multiplication / BASE ;
 						multiplication /= BASE ;
 					} // fin while
-					
+					if(multiplication > BASE) {
+						retenue += multiplication / BASE ;
+					}
 				}
 				index++ ;
 			} // fin for j 
 			
 		} // fin for i
+		
+		if(retenue != 0) {
+			result.set(result.size()-1, retenue) ;
+			retenue = 0 ;
+		}
+		
+		
 		
 		// AFFICHAGE DU RESULTAT :
 		for(int elem : result) System.out.println(elem + " ") ;
