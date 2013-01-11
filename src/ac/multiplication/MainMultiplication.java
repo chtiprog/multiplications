@@ -68,7 +68,7 @@ public class MainMultiplication {
 			
 		} // fin for i
 		
-		if(retenue != 0) {
+		if(retenue != 0) { // test si il reste une retenue non ajoutée à result
 			result.set(result.size()-1, retenue) ;
 			retenue = 0 ;
 		}
