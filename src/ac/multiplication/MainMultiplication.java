@@ -100,11 +100,20 @@ public class MainMultiplication {
 			retenue = 0 ;
 		}
 		
+		// NORMALISATION :
+		Collections.reverse(result);
+		for(int i = 0 ; i < result.size() ; ++i){
+			if(result.get(i) > 0) break ;
+			
+			if(result.get(i) == 0) {
+				result.remove(i) ;
+			}
+		}
+		
 		
 		
 		// AFFICHAGE DU RESULTAT :
 		String reponse = "" ;
-		Collections.reverse(result);
 		for(int elem : result){
 			reponse += String.valueOf(elem);
 		}
